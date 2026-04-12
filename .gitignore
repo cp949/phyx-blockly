@@ -1,0 +1,56 @@
+# Build outputs
+dist/
+coverage/
+.nyc_output/
+docs/plans/
+
+# Dependency directories
+node_modules/
+blockly-src/node_modules/
+
+# Upstream lockfiles
+blockly-src/package-lock.json
+blockly-src/yarn.lock
+
+# Temporary local test fixtures
+.tmp-dist-test-*/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime files
+*.pid
+*.pid.lock
+*.seed
+report.*.json
+
+# Caches
+.cache/
+.eslintcache
+.npm/
+.grunt/
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Environment files
+.env
+.env.test
+
+# Archives
+*.tgz
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.node_repl_history
+.yarn-integrity
+.tern-port
+.claude/

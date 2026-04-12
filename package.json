@@ -1,0 +1,40 @@
+{
+  "name": "@cp949/phyx-blockly",
+  "version": "12.5.1-p1",
+  "description": "Patched Blockly package with async JavaScript procedure generation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cp949/phyx-blockly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cp949/phyx-blockly/issues"
+  },
+  "homepage": "https://github.com/cp949/phyx-blockly",
+  "main": "index.js",
+  "author": {
+    "name": "jjfive"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "bash ./build.sh",
+    "build:test": "bash ./build-and-test.sh",
+    "release": "bash ./release.sh",
+    "reset": "git -C blockly-src restore .",
+    "test": "node ./tests/validate-package-json.test.cjs",
+    "test:dist": "node ./tests/dist-integration.test.cjs"
+  },
+  "devDependencies": {
+    "rimraf": "^6.1.3",
+    "shelljs": "^0.10.0"
+  },
+  "keywords": [
+    "phyx",
+    "cp949",
+    "blockly",
+    "async",
+    "blockcoding"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
