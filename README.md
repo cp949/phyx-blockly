@@ -85,14 +85,21 @@ npm run release
 
 ```sh
 # 1. UPSTREAM_REF.txt 수정
-echo "blockly-v13.0.0" > UPSTREAM_REF.txt
+echo "blockly-v13.5.0" > UPSTREAM_REF.txt
 
-# 2. 새 버전으로 먼저 테스트
-npm run build -- --ref blockly-v13.0.0
+# 2. 새 버전으로 빌드. 패치한 파일을 upstream이 바꿨으면 여기서 실패하고 변경 diff를 보여준다
+npm run build
 
-# 3. 문제 없으면 package.json 버전도 올리고 배포
+# 3. 실패했다면 src/ 패치 파일을 수정하고 기준을 갱신한다
+npm run patch:diff     # src/ 와 upstream 파일의 차이 확인
+npm run patch:accept   # src-base.json 갱신
+
+# 4. 문제 없으면 package.json 버전도 올리고 배포
 npm run release
 ```
+
+`src-base.json`은 패치 기준이 된 upstream 파일의 해시를 기록한다.
+`src/` 파일은 upstream 파일을 통째로 덮어쓰므로, 이 기록이 upstream 변경을 놓치지 않게 한다.
 
 ### 처음 설정
 
@@ -130,4 +137,4 @@ src/packages/blockly/generators/javascript/procedures.ts
 - `foo()` → `await foo()`
 - `Order.FUNCTION_CALL` → `Order.AWAIT`
 
-upstream 업데이트 시 이 파일 먼저 확인.
+upstream 업데이트 시 이 파일 먼저 확인. `npm run patch:diff`로 차이를 본다.

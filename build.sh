@@ -42,6 +42,7 @@ fi
 git -C blockly-src checkout "${UPSTREAM_REF}"
 echo "blockly-src: $(git -C blockly-src describe --tags --exact-match 2>/dev/null || git -C blockly-src rev-parse --short HEAD)"
 
+node ./scripts/patch-base.cjs check HEAD
 bash ./scripts/patch.sh
 bash ./scripts/compile-blockly.sh
 

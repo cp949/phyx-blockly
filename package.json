@@ -20,6 +20,8 @@
     "build": "bash ./build.sh",
     "build:test": "bash ./build-and-test.sh",
     "release": "bash ./release.sh",
+    "patch:diff": "node ./scripts/patch-base.cjs diff",
+    "patch:accept": "node ./scripts/patch-base.cjs accept",
     "reset": "git -C blockly-src restore .",
     "test": "node ./tests/validate-package-json.test.cjs",
     "test:dist": "node ./tests/dist-integration.test.cjs"
