@@ -64,13 +64,18 @@ git submodule update --init --recursive
 
 ## 버전 규칙
 
-upstream 버전 뒤에 `-pN` 접미사:
+upstream 버전 뒤에 `-patch.N` 접미사:
 
 ```text
-upstream 12.5.1  →  package 12.5.1-p1, 12.5.1-p2, ...
+upstream 12.5.1  →  package 12.5.1-patch.1, 12.5.1-patch.2, ...
 ```
 
 `package.json`의 버전만 올리면 됩니다.
+
+- `N`은 점으로 분리합니다. semver가 숫자로 비교하므로 `patch.10`이 `patch.2`보다 높습니다.
+- `-pN`(점 없음)은 `p10 < p2`로 정렬되어 쓰지 않습니다.
+- 이미 발행된 `12.5.1-p1`은 유지합니다. `patch.N`이 `p1`보다 높게 정렬됩니다.
+- prerelease이므로 `^12.5.1` 범위에는 매칭되지 않습니다. 사용하는 쪽에서 정확한 버전을 고정해야 합니다.
 
 ---
 
