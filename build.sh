@@ -30,6 +30,8 @@ cleanup() {
 
 trap cleanup EXIT
 
+rm -f .dist-ref
+
 git -C blockly-src fetch --tags origin
 
 if [[ "${UPSTREAM_REF}" == "latest" ]]; then
@@ -46,3 +48,6 @@ bash ./scripts/compile-blockly.sh
 rm -rf dist
 cp -rf blockly-src/packages/blockly/dist dist
 node ./scripts/dist-package.cjs
+
+# release.sh가 dist의 upstream ref를 확인할 수 있도록 기록한다.
+echo "${UPSTREAM_REF}" > .dist-ref

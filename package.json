@@ -1,6 +1,7 @@
 {
   "name": "@cp949/phyx-blockly",
   "version": "13.4.0-patch.1",
+  "private": true,
   "description": "Patched Blockly package with async JavaScript procedure generation",
   "repository": {
     "type": "git",
