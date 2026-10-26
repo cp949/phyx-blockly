@@ -6,6 +6,47 @@ upstream Blockly에 최소 패치를 적용해 `@cp949/phyx-blockly`로 npm 배�
 
 ---
 
+## 13.x 사용 시 주의사항
+
+`13.4.0-patch.1`부터 upstream Blockly 13.x 기반입니다. 12.x에서 올리면 아래를 확인합니다.
+전체 변경 목록: [blockly-v13.0.0 릴리스 노트](https://github.com/RaspberryPiFoundation/blockly/releases/tag/blockly-v13.0.0)
+
+### 설치 환경
+
+| 항목 | 내용 |
+| ---- | ---- |
+| Node | 22 이상 |
+| `jsdom` | peerDependency (`>=27.4.0 <31.0.0`). Node 환경에서는 직접 설치 |
+| 브라우저 | Safari 15.4 이상 |
+
+```sh
+npm install @cp949/phyx-blockly jsdom
+```
+
+### 동작 변경
+
+- 키보드 탐색과 스크린리더 지원이 기본으로 켜집니다.
+- 기존 단축키와 충돌하면 한쪽을 바꿔야 합니다.
+- `@blockly/keyboard-navigation` 플러그인은 제거합니다. 13.x에 내장되었습니다.
+- 기본 renderer가 `thrasos`로 바뀝니다. renderer를 명시하면 영향이 없습니다.
+- 기본 sound 위치가 `blockly.com/media`로 바뀝니다. 새 drop sound도 추가되었습니다.
+- 커스텀 블록과 필드는 aria 역할과 라벨을 추가해야 합니다.
+
+### API 변경
+
+- `Block.getVars()`가 제거되었습니다. `Block.getVarModels()`를 사용합니다.
+- 이 저장소의 `procedures.ts` 패치도 같은 이유로 `getVarModels()`와 `getId()`로 바꿨습니다.
+
+### 12.x에 머무르기
+
+`latest`는 13.x를 가리킵니다. 12.x는 버전을 고정합니다.
+
+```sh
+npm install @cp949/phyx-blockly@12.5.1-p1
+```
+
+---
+
 ## 한 줄 요약
 
 ```text
