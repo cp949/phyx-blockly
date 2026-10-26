@@ -16,11 +16,15 @@ function installPackage(tempRoot, spec) {
 }
 
 function linkOrInstallJsdom(repoRoot, tempRoot, nodeModulesDir) {
+  // Blockly 13부터 jsdom이 dependencies에서 peerDependencies로 옮겨졌다.
+  const distPkg = require(path.join(repoRoot, "dist", "package.json"));
   const jsdomVersion =
-    require(path.join(repoRoot, "dist", "package.json")).dependencies?.jsdom;
+    distPkg.dependencies?.jsdom ?? distPkg.peerDependencies?.jsdom;
 
   if (!jsdomVersion) {
-    throw new Error("dist/package.json does not declare a jsdom dependency.");
+    throw new Error(
+      "dist/package.json does not declare a jsdom dependency or peerDependency."
+    );
   }
 
   installPackage(tempRoot, `jsdom@${jsdomVersion}`);

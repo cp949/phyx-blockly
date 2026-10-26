@@ -67,9 +67,9 @@ export function procedures_defreturn(
     returnValue = generator.INDENT + 'return ' + returnValue + ';\n';
   }
   const args = [];
-  const variables = block.getVars();
+  const variables = block.getVarModels();
   for (let i = 0; i < variables.length; i++) {
-    args[i] = generator.getVariableName(variables[i]);
+    args[i] = generator.getVariableName(variables[i].getId());
   }
   let code =
     'async function ' +
@@ -102,7 +102,7 @@ export function procedures_callreturn(
   // Call a procedure with a return value.
   const funcName = generator.getProcedureName(block.getFieldValue('NAME'));
   const args = [];
-  const variables = block.getVars();
+  const variables = block.getVarModels();
   for (let i = 0; i < variables.length; i++) {
     args[i] = generator.valueToCode(block, 'ARG' + i, Order.NONE) || 'null';
   }
