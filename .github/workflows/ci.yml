@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # build.sh가 submodule 안에서 태그를 checkout하므로 전체 히스토리가 필요하다.
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: package.json 검증
+        run: npm test
+
+      # patch-base 검증, 패치 적용, Blockly 컴파일을 포함한다.
+      - name: 빌드
+        run: npm run build
+
+      - name: dist 통합 테스트
+        run: npm run test:dist
