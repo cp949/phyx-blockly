@@ -2,9 +2,7 @@
  * packages/blockly/generators/javascript/procedures.ts를 복사해서 변경
  * 변경한 부분:
  * 함수 정의에 async를 추가, 함수 호출에 await을 추가
- * ORDER_FUNCTION_CALL을 ORDER_AWAIT으로 변경
- *
- * VELO 주석을 참고
+ * Order.FUNCTION_CALL을 Order.AWAIT으로 변경
  */
 
 /**
@@ -107,9 +105,7 @@ export function procedures_callreturn(
     args[i] = generator.valueToCode(block, 'ARG' + i, Order.NONE) || 'null';
   }
 
-  // const code = funcName + '(' + args.join(', ') + ')';
-  // return [code, Order.FUNCTION_CALL];
-  // VELO
+  // Order.AWAIT를 써야 `(await f()).length`처럼 필요한 곳에 괄호가 붙는다.
   const code = 'await ' + funcName + '(' + args.join(', ') + ')';
   return [code, Order.AWAIT];
 }

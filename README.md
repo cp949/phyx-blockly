@@ -61,6 +61,7 @@ src/ 패치 파일  →  build.sh로 blockly-src에 적용 및 빌드  →  dist
 | ---- | ---- |
 | `UPSTREAM_REF.txt` | 빌드할 upstream Blockly 태그/hash |
 | `src/` | 로컬 패치 파일 (upstream과 동일한 경로 구조) |
+| `src-base.json` | 패치 기준이 된 upstream 파일의 해시 |
 | `build.sh` | 패치 적용 + 빌드 + `dist/` 생성 |
 | `build-and-test.sh` | build.sh + 앞뒤 테스트 |
 | `release.sh` | 테스트 + npm publish |
